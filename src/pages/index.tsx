@@ -20,7 +20,7 @@ export default function Home() {
                     Bill Assesment
                 </Typography>
                 <Button variant="contained" color="primary">
-                    Click
+                    Click Me
                 </Button>
             </Container>
         </>
