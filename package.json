@@ -1,29 +1,47 @@
 {
-  "name": "bill-assessment",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/server": "^11.11.0",
-    "@emotion/styled": "^11.14.1",
-    "@mui/material": "^7.3.2",
-    "@mui/material-nextjs": "^7.3.2",
-    "next": "14.2.25",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.25",
-    "typescript": "^5"
-  }
+    "name": "bill-assessment",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
+        "prettier": "prettier --write .",
+        "prettier:check": "prettier --check ."
+    },
+    "husky": {
+        "hooks": {
+          "pre-commit": "lint-staged"
+        }
+    },
+    "lint-staged": {
+        "*.{ts,tsx}": "eslint --cache --ext .ts,.tsx --fix --quiet",
+        "*.{ts,tsx,js,md,yml,scss}": "prettier --write"
+      },
+    "dependencies": {
+        "@emotion/cache": "^11.14.0",
+        "@emotion/react": "^11.14.0",
+        "@emotion/server": "^11.11.0",
+        "@emotion/styled": "^11.14.1",
+        "@mui/material": "^7.3.2",
+        "@mui/material-nextjs": "^7.3.2",
+        "next": "14.2.25",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "@typescript-eslint/eslint-plugin": "^5.62.0",
+        "@typescript-eslint/parser": "^5.62.0",
+        "eslint": "^8.57.1",
+        "eslint-config-next": "14.2.25",
+        "eslint-plugin-react": "^7.37.5",
+        "husky": "^9.1.7",
+        "lint-staged": "^16.1.6",
+        "prettier": "^3.6.2",
+        "typescript": "^5"
+    }
 }
