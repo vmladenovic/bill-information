@@ -1,5 +1,6 @@
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
+import {Container, Typography} from '@mui/material';
 
 const columns: GridColDef[] = [
     {field: 'id', headerName: 'ID', width: 70},
@@ -36,17 +37,22 @@ const rows = [
 
 const paginationModel = {page: 0, pageSize: 5};
 
-export default function Bills() {
+export function Bills() {
     return (
-        <Paper sx={{height: 400, width: '100%'}}>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{pagination: {paginationModel}}}
-                pageSizeOptions={[5, 10]}
-                checkboxSelection
-                sx={{border: 0}}
-            />
-        </Paper>
+        <Container maxWidth="md">
+            <Typography variant="h4" component="h1" gutterBottom>
+                Bill Assesment
+            </Typography>
+            <Paper sx={{height: 400, width: '100%'}}>
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    initialState={{pagination: {paginationModel}}}
+                    pageSizeOptions={[5, 10]}
+                    checkboxSelection
+                    sx={{border: 0}}
+                />
+            </Paper>
+        </Container>
     );
 }

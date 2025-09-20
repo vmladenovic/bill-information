@@ -1,8 +1,5 @@
 import Head from 'next/head';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
-
-import Bills from '@/components/bills';
+import {Bills} from '@/components/bills/bills';
 
 export default function Home() {
     return (
@@ -16,12 +13,8 @@ export default function Home() {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Container maxWidth="md">
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Bill Assesment
-                </Typography>
-                <Bills />
-            </Container>
+
+            <Bills />
         </>
     );
 }

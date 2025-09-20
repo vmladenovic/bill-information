@@ -12,6 +12,7 @@
             {
                 "allow": ["warn", "error", "info"]
             }
-        ]
+        ],
+        "@typescript-eslint/no-var-require": "off"
     }
 }
