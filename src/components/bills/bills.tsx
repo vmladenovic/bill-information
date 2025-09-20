@@ -1,58 +1,56 @@
-import {DataGrid, GridColDef} from '@mui/x-data-grid';
-import Paper from '@mui/material/Paper';
-import {Container, Typography} from '@mui/material';
+import {AppBar, Box, Container, Tab, Tabs, Typography} from '@mui/material';
+import {grey} from '@mui/material/colors';
+import {useState} from 'react';
+import {TabPanel} from './tab-panel';
+import {All} from './tabs/all';
+import {Favourite} from './tabs/favourite';
 
-const columns: GridColDef[] = [
-    {field: 'id', headerName: 'ID', width: 70},
-    {field: 'firstName', headerName: 'First name', width: 130},
-    {field: 'lastName', headerName: 'Last name', width: 130},
-    {
-        field: 'age',
-        headerName: 'Age',
-        type: 'number',
-        width: 90,
-    },
-    {
-        field: 'fullName',
-        headerName: 'Full name',
-        description: 'This column has a value getter and is not sortable.',
-        sortable: false,
-        width: 160,
-        valueGetter: (value, row) =>
-            `${row.firstName || ''} ${row.lastName || ''}`,
-    },
-];
-
-const rows = [
-    {id: 1, lastName: 'Snow', firstName: 'Jon', age: 35},
-    {id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42},
-    {id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45},
-    {id: 4, lastName: 'Stark', firstName: 'Arya', age: 16},
-    {id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null},
-    {id: 6, lastName: 'Melisandre', firstName: null, age: 150},
-    {id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44},
-    {id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36},
-    {id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65},
-];
-
-const paginationModel = {page: 0, pageSize: 5};
+enum BillTabs {
+    All = 0,
+    Favourite = 1,
+}
 
 export function Bills() {
+    const [tab, setTab] = useState<BillTabs>(BillTabs.All);
+
     return (
         <Container maxWidth="md">
             <Typography variant="h4" component="h1" gutterBottom>
                 Bill Assesment
             </Typography>
-            <Paper sx={{height: 400, width: '100%'}}>
-                <DataGrid
-                    rows={rows}
-                    columns={columns}
-                    initialState={{pagination: {paginationModel}}}
-                    pageSizeOptions={[5, 10]}
-                    checkboxSelection
-                    sx={{border: 0}}
-                />
-            </Paper>
+
+            <Box
+                sx={{
+                    bgcolor: 'background.paper',
+                    width: '100%',
+                    minHeight: '100%',
+                }}
+            >
+                <AppBar position="static" sx={{backgroundColor: grey[900]}}>
+                    <Tabs
+                        value={tab}
+                        onChange={(_, value) => setTab(value as BillTabs)}
+                        indicatorColor="secondary"
+                        textColor="inherit"
+                        variant="fullWidth"
+                        aria-label="Bills tab select"
+                    >
+                        <Tab label="All Bills" id="all" value={BillTabs.All} />
+                        <Tab
+                            label="Favourite Bills"
+                            id="favourite"
+                            value={BillTabs.Favourite}
+                        />
+                    </Tabs>
+
+                    <TabPanel isVisible={tab === BillTabs.All}>
+                        <All />
+                    </TabPanel>
+                    <TabPanel isVisible={tab === BillTabs.Favourite}>
+                        <Favourite />
+                    </TabPanel>
+                </AppBar>
+            </Box>
         </Container>
     );
 }

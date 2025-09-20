@@ -4,6 +4,16 @@ import {CacheProvider, EmotionCache} from '@emotion/react';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import cache from '@emotion/cache';
+import ReactQueryProvider from '@/contexts/react-query-context';
+import dynamic from 'next/dynamic';
+
+const ReactQueryDevtools = dynamic(
+    () =>
+        import('@tanstack/react-query-devtools').then(
+            (mod) => mod.ReactQueryDevtools,
+        ),
+    {ssr: false},
+);
 
 interface MyAppProps extends AppProps {
     emotionCache?: EmotionCache;
@@ -23,11 +33,14 @@ export default function MyApp(props: MyAppProps) {
     const {Component, emotionCache = clientSideEmotionCache, pageProps} = props;
 
     return (
-        <CacheProvider value={emotionCache}>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <Component {...pageProps} />
-            </ThemeProvider>
-        </CacheProvider>
+        <ReactQueryProvider>
+            <CacheProvider value={emotionCache}>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <Component {...pageProps} />
+                </ThemeProvider>
+            </CacheProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+        </ReactQueryProvider>
     );
 }
