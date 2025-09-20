@@ -1,11 +1,7 @@
 {
     "parser": "@typescript-eslint/parser",
-    "extends": [
-        "plugin:react/recommended",
-        "next/core-web-vitals",
-        "next/typescript"
-    ],
-    "plugins": ["@typescript-eslint"],
+    "extends": ["plugin:react/recommended", "next/typescript"],
+    "plugins": ["@typescript-eslint", "react-hooks"],
     "rules": {
         "no-console": [
             "warn",
@@ -13,6 +9,9 @@
                 "allow": ["warn", "error", "info"]
             }
         ],
-        "@typescript-eslint/no-var-require": "off"
+        "@typescript-eslint/no-var-require": "off",
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error",
+        "react/react-in-jsx-scope": "off"
     }
 }
