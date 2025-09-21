@@ -5,6 +5,7 @@ export const DEFAULT_COLUMN_OPTIONS = {
     sortable: false,
     filterable: false,
     resizable: true,
+    disableColumnMenu: true,
 };
 
 export const DEFAULT_GRID_COLUMNS: GridColDef[] = [
@@ -20,6 +21,7 @@ export const DEFAULT_GRID_COLUMNS: GridColDef[] = [
         headerName: 'Bill Type',
         width: 130,
         filterable: true,
+        disableColumnMenu: false,
     },
     {
         ...DEFAULT_COLUMN_OPTIONS,
