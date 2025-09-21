@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import cache from '@emotion/cache';
 import ReactQueryProvider from '@/contexts/react-query-context';
 import dynamic from 'next/dynamic';
+import {ReduxProvider} from '@/contexts/redux-context';
 
 const ReactQueryDevtools = dynamic(
     () =>
@@ -34,12 +35,14 @@ export default function MyApp(props: MyAppProps) {
 
     return (
         <ReactQueryProvider>
-            <CacheProvider value={emotionCache}>
-                <ThemeProvider theme={theme}>
-                    <CssBaseline />
-                    <Component {...pageProps} />
-                </ThemeProvider>
-            </CacheProvider>
+            <ReduxProvider>
+                <CacheProvider value={emotionCache}>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                        <Component {...pageProps} />
+                    </ThemeProvider>
+                </CacheProvider>
+            </ReduxProvider>
             <ReactQueryDevtools initialIsOpen={false} />
         </ReactQueryProvider>
     );

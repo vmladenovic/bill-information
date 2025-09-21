@@ -4,6 +4,8 @@ import {
 } from '@/constants/pagination';
 import {useDataGridPagination} from '@/hooks/use-data-grid-pagination';
 import {useGetBillGridRowsQuery} from '@/queries/bill-queries';
+import {useSetActiveBill} from '@/state/bills/dispatchers';
+
 import {DataGrid, GridColDef} from '@mui/x-data-grid';
 import {useEffect} from 'react';
 
@@ -53,6 +55,7 @@ const gridColumns: GridColDef[] = [
 ];
 
 export function All() {
+    const setActiveBill = useSetActiveBill();
     const {
         paginationModel,
         filterModel,
@@ -85,9 +88,7 @@ export function All() {
             loading={isFetchingGridData}
             paginationMode="server"
             onPaginationModelChange={setPaginationModel}
-            onRowClick={(params) => {
-                console.info('Row clicked: ', params.row);
-            }}
+            onRowClick={(params) => setActiveBill(params.row)}
             pageSizeOptions={DEFAULT_DATA_GRID_PAGE_SIZE_OPTIONS}
             initialState={{
                 columns: {
