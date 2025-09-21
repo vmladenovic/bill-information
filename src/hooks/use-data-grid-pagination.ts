@@ -1,5 +1,5 @@
 import {DEFAULT_DATA_GRID_PAGE_SIZE} from '@/constants/pagination';
-import {GridPaginationModel, GridFilterModel} from '@mui/x-data-grid';
+import type {GridPaginationModel, GridFilterModel} from '@mui/x-data-grid';
 import {useState} from 'react';
 
 // since this can be used with every DataGrid instance I extracteds it to a separate hook -> less DRY

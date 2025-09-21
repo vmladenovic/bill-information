@@ -1,14 +1,10 @@
 import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
-import {Bill} from './types';
-
-interface BillsState {
-    activeBill?: Bill;
-    favourites: Bill[];
-}
+import {BillTabs, type Bill, type BillsState} from './types';
 
 const initialState: BillsState = {
     activeBill: undefined,
     favourites: [],
+    tab: BillTabs.All,
 };
 
 const billsSlice = createSlice({
@@ -16,23 +12,30 @@ const billsSlice = createSlice({
     initialState,
     reducers: {
         setActiveBill(state, action: PayloadAction<Bill | undefined>) {
-            state.activeBill = action.payload;
+            return {...state, activeBill: action.payload};
         },
-        addFavourite(state, action: PayloadAction<Bill>) {
+        toggleFavourite(state, action: PayloadAction<Bill>) {
             if (
                 !state.favourites.find((bill) => bill.id === action.payload.id)
             ) {
-                state.favourites = [...state.favourites, action.payload];
+                return {
+                    ...state,
+                    favourites: [...state.favourites, action.payload],
+                };
+            } else {
+                return {
+                    ...state,
+                    favourites: state.favourites.filter(
+                        (bill) => bill.id !== action.payload.id,
+                    ),
+                };
             }
         },
-        removeFavourite(state, action: PayloadAction<string>) {
-            state.favourites = state.favourites.filter(
-                (bill) => bill.id !== action.payload,
-            );
+        setTab(state, action: PayloadAction<BillTabs>) {
+            return {...state, tab: action.payload};
         },
     },
 });
 
-export const {setActiveBill, addFavourite, removeFavourite} =
-    billsSlice.actions;
+export const {setActiveBill, toggleFavourite, setTab} = billsSlice.actions;
 export default billsSlice.reducer;

@@ -1,6 +1,7 @@
 import '@/styles/globals.css';
 import type {AppProps} from 'next/app';
-import {CacheProvider, EmotionCache} from '@emotion/react';
+import type {EmotionCache} from '@emotion/react';
+import {CacheProvider} from '@emotion/react';
 import {ThemeProvider, createTheme} from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import cache from '@emotion/cache';
@@ -25,7 +26,10 @@ const clientSideEmotionCache = cache({key: 'css', prepend: true});
 const theme = createTheme({
     palette: {
         primary: {
-            main: '#1976d2',
+            main: '#3f51b5',
+        },
+        secondary: {
+            main: '#f50057',
         },
     },
 });

@@ -7,3 +7,14 @@ export interface Bill {
     sponsor: string;
     type: string;
 }
+
+export enum BillTabs {
+    All = 0,
+    Favourite = 1,
+}
+
+export interface BillsState {
+    activeBill?: Bill;
+    favourites: Bill[];
+    tab: BillTabs;
+}

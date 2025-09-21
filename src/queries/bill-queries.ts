@@ -3,11 +3,11 @@ import type {
     GridGetRowsResponse,
     GridPaginationModel,
 } from '@mui/x-data-grid';
-import {
+import type {
     QueryFunctionContext,
-    useQuery,
     UseQueryOptions,
 } from '@tanstack/react-query';
+import {useQuery} from '@tanstack/react-query';
 import type {BillsResponse} from '@/types/bill';
 import {BILLS_API} from '@/constants/apis';
 

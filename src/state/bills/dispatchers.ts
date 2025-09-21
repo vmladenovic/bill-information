@@ -1,6 +1,6 @@
 import {useStateDispatch} from '@/state/state-hooks';
-import {addFavourite, removeFavourite, setActiveBill} from './bills-slice';
-import {Bill} from './types';
+import {setActiveBill, toggleFavourite, setTab} from './bills-slice';
+import type {Bill, BillTabs} from './types';
 
 export function useSetActiveBill() {
     const dispatch = useStateDispatch();
@@ -9,14 +9,14 @@ export function useSetActiveBill() {
         dispatch(setActiveBill(activeBill));
 }
 
-export function useAddFavourite() {
+export function useToggleFavourite() {
     const dispatch = useStateDispatch();
 
-    return (bill: Bill) => dispatch(addFavourite(bill));
+    return (bill: Bill) => dispatch(toggleFavourite(bill));
 }
 
-export function useRemoveFavourite() {
+export function useSetTab() {
     const dispatch = useStateDispatch();
 
-    return (billId: string) => dispatch(removeFavourite(billId));
+    return (tab: BillTabs) => dispatch(setTab(tab));
 }

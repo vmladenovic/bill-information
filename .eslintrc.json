@@ -16,7 +16,8 @@
         "@typescript-eslint/no-var-require": "off",
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
-        "react/react-in-jsx-scope": "off"
+        "react/react-in-jsx-scope": "off",
+        "@typescript-eslint/consistent-type-imports": "error"
     },
     "settings": {
         "react": {

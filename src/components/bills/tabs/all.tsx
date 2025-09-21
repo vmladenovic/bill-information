@@ -1,61 +1,16 @@
-import {
-    DEFAULT_DATA_GRID_PAGE_SIZE,
-    DEFAULT_DATA_GRID_PAGE_SIZE_OPTIONS,
-} from '@/constants/pagination';
+import {DEFAULT_DATA_GRID_PAGE_SIZE_OPTIONS} from '@/constants/pagination';
 import {useDataGridPagination} from '@/hooks/use-data-grid-pagination';
 import {useGetBillGridRowsQuery} from '@/queries/bill-queries';
 import {useSetActiveBill} from '@/state/bills/dispatchers';
-
-import {DataGrid, GridColDef} from '@mui/x-data-grid';
+import {DataGrid} from '@mui/x-data-grid';
 import {useEffect} from 'react';
-
-const DEFAULT_COLUMN_OPTIONS = {
-    sortable: false,
-    filterable: false,
-    resizable: true,
-};
-
-// since this is a local constant we can keep it here for the readibility purposes
-const gridColumns: GridColDef[] = [
-    {
-        ...DEFAULT_COLUMN_OPTIONS,
-        field: 'billNo',
-        headerName: 'Bill Number',
-        width: 130,
-    },
-    {
-        ...DEFAULT_COLUMN_OPTIONS,
-        field: 'type',
-        headerName: 'Bill Type',
-        width: 130,
-        filterable: true,
-    },
-    {
-        ...DEFAULT_COLUMN_OPTIONS,
-        field: 'status',
-        headerName: 'Bill Status',
-        width: 130,
-        type: 'singleSelect',
-        sortable: false,
-        filterable: false,
-    },
-    {
-        ...DEFAULT_COLUMN_OPTIONS,
-        field: 'sponsor',
-        headerName: 'Sponsor',
-        flex: 1,
-        minWidth: 300,
-    },
-    {
-        field: 'titleEn',
-    },
-    {
-        field: 'titleGa',
-    },
-];
+import {DEFAULT_INITIAL_STATE} from '@/constants/bills';
+import {useBillsDataGridColumns} from '@/hooks/bills/useBillsDataGridColumns';
 
 export function All() {
     const setActiveBill = useSetActiveBill();
+    const gridColumns = useBillsDataGridColumns();
+
     const {
         paginationModel,
         filterModel,
@@ -90,17 +45,7 @@ export function All() {
             onPaginationModelChange={setPaginationModel}
             onRowClick={(params) => setActiveBill(params.row)}
             pageSizeOptions={DEFAULT_DATA_GRID_PAGE_SIZE_OPTIONS}
-            initialState={{
-                columns: {
-                    columnVisibilityModel: {
-                        titleEn: false,
-                        titleGa: false,
-                    },
-                },
-                pagination: {
-                    paginationModel: DEFAULT_DATA_GRID_PAGE_SIZE,
-                },
-            }}
+            initialState={DEFAULT_INITIAL_STATE}
         />
     );
 }

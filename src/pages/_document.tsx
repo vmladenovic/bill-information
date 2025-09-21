@@ -1,11 +1,6 @@
 // eslint-disable @typescript-eslint/no-explicit-any
-import Document, {
-    Html,
-    Head,
-    Main,
-    NextScript,
-    DocumentContext,
-} from 'next/document';
+import type {DocumentContext} from 'next/document';
+import Document, {Html, Head, Main, NextScript} from 'next/document';
 import cache from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 

@@ -1,11 +1,10 @@
 import {AppBar, Box, Container, Tab, Tabs, Typography} from '@mui/material';
-import {grey} from '@mui/material/colors';
-import {useState} from 'react';
 import {TabPanel} from '../tabs/tab-panel';
 import {All} from './tabs/all';
 import {Favourite} from './tabs/favourite';
 import {ActiveBillDialog} from './active-bill-dialog/active-bill-dialog';
-import {useActiveBill} from '@/state/bills/selectors';
+import {useActiveBill, useBillTab} from '@/state/bills/selectors';
+import {useSetTab} from '@/state/bills/dispatchers';
 
 enum BillTabs {
     All = 0,
@@ -14,7 +13,8 @@ enum BillTabs {
 
 export function Bills() {
     const activeBill = useActiveBill();
-    const [tab, setTab] = useState<BillTabs>(BillTabs.All);
+    const tab = useBillTab();
+    const setTab = useSetTab();
 
     return (
         <>
@@ -25,12 +25,11 @@ export function Bills() {
 
                 <Box
                     sx={{
-                        bgcolor: 'background.paper',
                         width: '100%',
                         minHeight: '100%',
                     }}
                 >
-                    <AppBar position="static" sx={{backgroundColor: grey[900]}}>
+                    <AppBar position="static">
                         <Tabs
                             value={tab}
                             onChange={(_, value) => setTab(value as BillTabs)}
