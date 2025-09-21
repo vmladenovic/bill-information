@@ -1,7 +1,11 @@
 {
     "parser": "@typescript-eslint/parser",
-    "extends": ["plugin:react/recommended", "next/typescript"],
-    "plugins": ["@typescript-eslint", "react-hooks"],
+    "extends": [
+        "plugin:react/recommended",
+        "eslint:recommended",
+        "next/typescript"
+    ],
+    "plugins": ["@typescript-eslint", "react-hooks", "@next/next"],
     "rules": {
         "no-console": [
             "warn",
@@ -13,5 +17,10 @@
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
         "react/react-in-jsx-scope": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
 }
