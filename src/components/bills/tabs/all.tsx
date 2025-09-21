@@ -77,6 +77,7 @@ export function All() {
 
     return (
         <DataGrid
+            disableColumnSelector
             columns={gridColumns}
             rows={gridData?.rows}
             rowCount={rowCount}
