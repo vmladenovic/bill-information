@@ -16,10 +16,7 @@ the result.
 Accept the self-signed certificate. This step is required to prevent CORS errors
 when accessing the API.
 
-You can start editing the page by modifying `pages/index.tsx`. The page
-auto-updates as you edit the file.
-
-This project uses
+This project uses:
 
 - [`Material UI`](https://mui.com/) open-source component library that provides
   pre-built UI components for React, implementing Google's Material Design
