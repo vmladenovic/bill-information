@@ -1,7 +1,13 @@
 import {Tabs, Tab, Typography} from '@mui/material';
+import {styled} from '@mui/material/styles';
 import {TabPanel} from '@/components/tabs/tab-panel';
 import {useState} from 'react';
 import {useActiveBill} from '@/state/bills/selectors';
+
+const BillTitle = styled(Typography)({
+    paddingTop: '24px',
+    paddingBottom: '24px',
+});
 
 enum TitleTabs {
     En,
@@ -27,14 +33,14 @@ export function Content() {
             </Tabs>
 
             <TabPanel isVisible={tab === TitleTabs.En}>
-                <Typography gutterBottom sx={{paddingTop: 3}}>
+                <BillTitle gutterBottom>
                     {activeBill?.titleEn || 'No English title available'}
-                </Typography>
+                </BillTitle>
             </TabPanel>
             <TabPanel isVisible={tab === TitleTabs.Ga}>
-                <Typography gutterBottom sx={{paddingTop: 3}}>
+                <BillTitle gutterBottom>
                     {activeBill?.titleGa || 'No Gaeilge title available'}
-                </Typography>
+                </BillTitle>
             </TabPanel>
         </>
     );

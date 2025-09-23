@@ -1,15 +1,24 @@
 import {AppBar, Box, Container, Tab, Tabs, Typography} from '@mui/material';
-import {TabPanel} from '../tabs/tab-panel';
-import {All} from './tabs/all';
-import {Favourite} from './tabs/favourite';
-import {ActiveBillDialog} from './active-bill-dialog/active-bill-dialog';
 import {useActiveBill, useBillTab} from '@/state/bills/selectors';
 import {useSetTab} from '@/state/bills/dispatchers';
+import dynamic from 'next/dynamic';
+import {BillTabs} from '@/state/bills/types';
 
-enum BillTabs {
-    All = 0,
-    Favourite = 1,
-}
+import {TabPanel} from '../tabs/tab-panel';
+import {All} from './tabs/all';
+
+// Load components lazily to reduce the global bundle size
+const Favourite = dynamic(
+    () => import('./tabs/favourite').then(({Favourite}) => Favourite),
+    {ssr: false},
+);
+const ActiveBillDialog = dynamic(
+    () =>
+        import('./active-bill-dialog/active-bill-dialog').then(
+            ({ActiveBillDialog}) => ActiveBillDialog,
+        ),
+    {ssr: false},
+);
 
 export function Bills() {
     const activeBill = useActiveBill();

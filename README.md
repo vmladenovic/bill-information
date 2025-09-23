@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with
+This is a Bill Information assignment app created using
+[Next.js](https://nextjs.org/) project bootstrapped with
 [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
@@ -7,31 +8,29 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the
-result.
+Open [https://localhost:3000](https://localhost:3000) with your browser to see
+the result.
+
+Accept the self-signed certificate. This step is required to prevent CORS errors
+when accessing the API.
 
 You can start editing the page by modifying `pages/index.tsx`. The page
 auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello). This
-endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are
-treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead
-of React pages.
-
 This project uses
-[`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to
-automatically optimize and load Inter, a custom Google Font.
+
+- [`Material UI`](https://mui.com/) open-source component library that provides
+  pre-built UI components for React, implementing Google's Material Design
+  principles to help developers build beautiful and accessible user interfaces
+  faster..
+- [`React Query`](https://tanstack.com/query/latest/docs) a powerful
+  data-fetching library for React applications. It simplifies the process of
+  fetching, caching, synchronizing, and updating server state.
+- [`React Redux`](https://react-redux.js.org/introduction/getting-started) the
+  official React UI bindings layer for Redux. It lets your React components read
+  data from a Redux store, and dispatch actions to the store to update state.
 
 ## Learn More
 

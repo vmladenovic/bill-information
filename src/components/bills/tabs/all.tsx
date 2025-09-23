@@ -1,9 +1,9 @@
+import {useEffect} from 'react';
+import {DataGrid} from '@mui/x-data-grid';
 import {DEFAULT_DATA_GRID_PAGE_SIZE_OPTIONS} from '@/constants/pagination';
 import {useDataGridPagination} from '@/hooks/use-data-grid-pagination';
 import {useGetBillGridRowsQuery} from '@/queries/bill-queries';
 import {useSetActiveBill} from '@/state/bills/dispatchers';
-import {DataGrid} from '@mui/x-data-grid';
-import {useEffect} from 'react';
 import {DEFAULT_INITIAL_STATE} from '@/constants/bills';
 import {useBillsDataGridColumns} from '@/hooks/bills/useBillsDataGridColumns';
 

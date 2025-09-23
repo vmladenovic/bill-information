@@ -7,6 +7,12 @@ import {Button, Paper, Stack, Typography} from '@mui/material';
 import {DataGrid} from '@mui/x-data-grid';
 import FavoriteOutlinedIcon from '@mui/icons-material/FavoriteOutlined';
 import {BillTabs} from '@/state/bills/types';
+import {styled} from '@mui/system';
+
+const Description = styled(Typography)(({theme}) => ({
+    textAlign: 'center',
+    paddindX: theme.spacing(3),
+}));
 
 export function Favourite() {
     const favourites = useFavourites();
@@ -16,16 +22,22 @@ export function Favourite() {
 
     if (!favourites?.length) {
         return (
-            <Paper sx={{paddingY: 6}}>
-                <Stack spacing={2} alignItems="center" mt={4}>
+            <Paper sx={{py: 6}}>
+                <Stack
+                    spacing={2}
+                    alignItems="center"
+                    mt={4}
+                    mx="auto"
+                    maxHeight={400}
+                >
                     <FavoriteOutlinedIcon fontSize="large" color="secondary" />
-                    <Typography variant="h5">
+                    <Description variant="h5" gutterBottom>
                         You have no favourite bills yet.
-                    </Typography>
-                    <Typography variant="body1" gutterBottom>
+                    </Description>
+                    <Description variant="body1" gutterBottom>
                         Click the heart icon next to a bill to add it to your
                         favourites.
-                    </Typography>
+                    </Description>
                     <Button
                         color="primary"
                         onClick={() => setTab(BillTabs.All)}
