@@ -15,6 +15,7 @@ const BootstrapDialog = styled(Dialog)(({theme}) => ({
     },
 }));
 
+// A dialog component to display the active bill details on table row click
 export function ActiveBillDialog() {
     const activeBill = useActiveBill();
     const setActiveBill = useSetActiveBill();

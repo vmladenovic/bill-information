@@ -9,13 +9,14 @@ const BillTitle = styled(Typography)({
     paddingBottom: '24px',
 });
 
+// Tabs for switching between English and Gaeilge bill titles, used locally so I keep it here
 enum TitleTabs {
     En,
     Ga,
 }
 
 export function Content() {
-    const activeBill = useActiveBill();
+    const activeBill = useActiveBill(); // Get the currently selected bill from the Redux store
     const [tab, setTab] = useState<TitleTabs>(TitleTabs.En);
 
     return (

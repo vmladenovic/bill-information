@@ -11,6 +11,7 @@ import {useQuery} from '@tanstack/react-query';
 import type {BillsResponse} from '@/types/bill';
 import {BILLS_API} from '@/constants/apis';
 
+// Define query keys for React Query to manage caching and refetching
 export const billKeys = {
     all: [{scope: 'bills'}] as const,
     search: (options: SearchOptions) =>
@@ -23,6 +24,8 @@ interface SearchOptions {
 }
 type BillQueryKey = ReturnType<typeof billKeys.search>;
 
+// A selector function to transform the API response into the format required by the DataGrid
+// Also transformed data will be available from the ReactQuery cache for other usages
 function getBillGridRowsSelector(data: BillsResponse): GridGetRowsResponse {
     return {
         rows:
@@ -45,15 +48,19 @@ function getBillGridRowsSelector(data: BillsResponse): GridGetRowsResponse {
     };
 }
 
+// Function to fetch bills from the API based on pagination and filtering options
 async function fetchBills({
     queryKey: [{options}],
 }: QueryFunctionContext<BillQueryKey>): Promise<BillsResponse> {
     const {page, pageSize} = options.paginationModel;
 
+    // Construct query parameters for pagination and filtering
+    // Note: The API currently does not support filtering for the Type column, but this is prepared for future use
     options.filterModel?.items?.forEach((item) => {
         params.append(item.field, item.value as string);
     });
 
+    // Calculate skip and limit for pagination
     const params = new URLSearchParams({
         skip: (page * pageSize).toString(),
         limit: pageSize.toString(),
@@ -64,7 +71,7 @@ async function fetchBills({
     return res.json();
 }
 
-// Since Query is a special hook I like to keep them in a separate
+// Since Query is a special hook I like to keep them in this folder
 export function useBillsQuery<T = BillsResponse>(
     searchOptions: SearchOptions,
     options?: Partial<
