@@ -19,15 +19,6 @@ jest.mock('@/hooks/bills/useBillsDataGridColumns', () => ({
     useBillsDataGridColumns: jest.fn(),
 }));
 
-jest.mock('@mui/x-data-grid', () => ({
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    DataGrid: (props: any) => (
-        <div data-testid="data-grid" {...props}>
-            DataGrid Mock
-        </div>
-    ),
-}));
-
 describe('Favourite Component', () => {
     const mockSetActiveBill = jest.fn();
     const mockSetTab = jest.fn();
@@ -73,8 +64,9 @@ describe('Favourite Component', () => {
         const mockFavourites = [{id: 1, name: 'Bill 1'}];
         (useFavourites as jest.Mock).mockReturnValue(mockFavourites);
 
-        render(<Favourite />);
+        const {container} = render(<Favourite />);
+        const dataGrid = container.querySelector('.MuiDataGrid-root');
 
-        expect(screen.getByTestId('data-grid')).toBeInTheDocument();
+        expect(dataGrid).toBeInTheDocument();
     });
 });
