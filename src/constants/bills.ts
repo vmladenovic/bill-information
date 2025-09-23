@@ -1,5 +1,5 @@
 import type {GridColDef} from '@mui/x-data-grid';
-import {DEFAULT_DATA_GRID_PAGE_SIZE} from './pagination';
+import {DEFAULT_DATA_GRID_PAGE_MODEL} from './pagination';
 
 export const DEFAULT_COLUMN_OPTIONS = {
     sortable: false,
@@ -53,6 +53,6 @@ export const DEFAULT_INITIAL_STATE = {
         },
     },
     pagination: {
-        paginationModel: DEFAULT_DATA_GRID_PAGE_SIZE,
+        paginationModel: DEFAULT_DATA_GRID_PAGE_MODEL,
     },
 };

@@ -16,7 +16,7 @@ export function All() {
         filterModel,
         setRowCount,
         rowCount,
-        setPaginationModel,
+        onHandlePaginationModelChange,
     } = useDataGridPagination();
 
     const {data: gridData, isFetching: isFetchingGridData} =
@@ -42,7 +42,7 @@ export function All() {
             pagination
             loading={isFetchingGridData}
             paginationMode="server"
-            onPaginationModelChange={setPaginationModel}
+            onPaginationModelChange={onHandlePaginationModelChange}
             onRowClick={(params) => setActiveBill(params.row)}
             pageSizeOptions={DEFAULT_DATA_GRID_PAGE_SIZE_OPTIONS}
             initialState={DEFAULT_INITIAL_STATE}

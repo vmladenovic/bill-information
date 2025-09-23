@@ -86,6 +86,7 @@ export function useBillsQuery<T = BillsResponse>(
     return useQuery({
         queryKey: billKeys.search(searchOptions),
         queryFn: fetchBills,
+        staleTime: 1000 * 30, // half minute
         ...options,
     });
 }

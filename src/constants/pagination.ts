@@ -1,4 +1,4 @@
-export const DEFAULT_DATA_GRID_PAGE_SIZE = {
+export const DEFAULT_DATA_GRID_PAGE_MODEL = {
     page: 0,
     pageSize: 10,
 };
