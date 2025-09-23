@@ -1,6 +1,5 @@
 import {Tabs, Tab, Typography} from '@mui/material';
 import {styled} from '@mui/material/styles';
-import {TabPanel} from '@/components/tabs/tab-panel';
 import {useState} from 'react';
 import {useActiveBill} from '@/state/bills/selectors';
 
@@ -33,16 +32,16 @@ export function Content() {
                 <Tab label="Gaeilge" id="gaeilge" value={TitleTabs.Ga} />
             </Tabs>
 
-            <TabPanel isVisible={tab === TitleTabs.En}>
+            {tab === TitleTabs.En && (
                 <BillTitle gutterBottom>
-                    {activeBill?.titleEn || 'No English title available'}
+                    {activeBill?.titleEn ?? 'No English title available'}
                 </BillTitle>
-            </TabPanel>
-            <TabPanel isVisible={tab === TitleTabs.Ga}>
+            )}
+            {tab === TitleTabs.Ga && (
                 <BillTitle gutterBottom>
-                    {activeBill?.titleGa || 'No Gaeilge title available'}
+                    {activeBill?.titleGa ?? 'No Gaeilge title available'}
                 </BillTitle>
-            </TabPanel>
+            )}
         </>
     );
 }

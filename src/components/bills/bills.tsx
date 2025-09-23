@@ -4,7 +4,6 @@ import {useSetTab} from '@/state/bills/dispatchers';
 import dynamic from 'next/dynamic';
 import {BillTabs} from '@/state/bills/types';
 
-import {TabPanel} from '../tabs/tab-panel';
 import {All} from './tabs/all';
 
 // Load components lazily to reduce the global bundle size
@@ -59,12 +58,8 @@ export function Bills() {
                             />
                         </Tabs>
 
-                        <TabPanel isVisible={tab === BillTabs.All}>
-                            <All />
-                        </TabPanel>
-                        <TabPanel isVisible={tab === BillTabs.Favourite}>
-                            <Favourite />
-                        </TabPanel>
+                        {tab === BillTabs.All && <All />}
+                        {tab === BillTabs.Favourite && <Favourite />}
                     </AppBar>
                 </Box>
             </Container>
